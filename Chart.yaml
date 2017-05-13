@@ -1,0 +1,11 @@
+---
+name: "george-hipchat"
+home: "http://fabric8.io/george-hipchat/"
+sources:
+- "http://github.com/u/uberops/george-hipchat"
+version: "1.0.0"
+description: "[Hubot](https://hubot.github.com/) adapter to use with [Slack](https://slack.com/)"
+maintainers:
+- name: "UberMonitoring Team @SecOps"
+  email: "secops@ubermonitoring.com"
+icon: "https://cdn.rawgit.com/fabric8io/fabric8-devops/master/george-hipchat/src/main/fabric8/icon.png"
