@@ -1,0 +1,94 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    fabric8.io/json-schema: |-
+      {
+        "type" : "object",
+        "properties" : {
+          "HUBOT_HIPCHAT_AUTH_TOKEN" : {
+            "type" : "string",
+            "description" : "HipChat API key",
+            "default" : ""
+          },
+          "HUBOT_GRAFANA_HOST" : {
+            "type" : "string",
+            "description" : "API key for a particular user",
+            "default" : ""
+          },
+          "HUBOT_JENKINS_URL" : {
+            "type" : "string",
+            "description" : "The URL for the Jenkins CI server",
+            "default" : "http://jenkins.default.svc.cluster.local"
+          },
+          "HUBOT_SLACK_TOKEN" : {
+            "type" : "string",
+            "description" : "The token for Hubot to login to Slack"
+          },
+          "HUBOT_HIPCHAT_HOST" : {
+            "type" : "string",
+            "description" : "The hipchat host for George to login to."
+          },
+          "HUBOT_HIPCHAT_JID" : {
+            "type" : "string",
+            "description" : "The hipchat ID for George to login to."
+          },
+          "HUBOT_HIPCHAT_PASSWORD" : {
+            "type" : "string",
+            "description" : "The hipchat password for George to login to."
+          },
+          "HUBOT_HIPCHAT_XMPP_DOMAIN" : {
+            "type" : "string",
+            "description" : "The hipchat XMPP DOMAIN.",
+            "default": "conf.btf.hipchat.com"
+          },
+          "HUBOT_HIPCHAT_ROOMS" : {
+            "type" : "string",
+            "description" : "Default rooms.",
+            "default": "All"
+          },
+          "HUBOT_HIPCHAT_JOIN_ROOMS_ON_INVITE" : {
+            "type" : "string",
+            "description" : "Auto-join on invite.",
+            "default": "true"
+          },
+          "HUBOT_HIPCHAT_JOIN_PUBLIC_ROOMS" : {
+            "type" : "string",
+            "description" : "Allow joining public rooms.",
+            "default": "true"
+          },
+          "HUBOT_LOG_LEVEL" : {
+            "type" : "string",
+            "description" : "Default logging level.",
+            "default": "debug"
+          },
+          "HUBOT_HIPCHAT_RECONNECT" : {
+            "type" : "string",
+            "description" : "Reconnect.",
+            "default": "true"
+          }
+        }
+      }
+  labels:
+    name: george-hipchat
+    provider: ubermonitoring
+    project: george-hipchat
+    version: 1.0.0
+    group: io.ubermonitoring.secops.apps
+  name: george-hipchat
+data:
+  hubot-jenkins-url: http://jenkins/
+  hubot-grafana-host: http://grafana/
+  hubot-hipchat-auth-token: ""
+  hubot-grafana-api-key: ""
+  hubot-hipchat-reconnect: "true"
+  hubot-log-level: "debug"
+  hubot-hipchat-join-public-rooms: "true"
+  hubot-hipchat-join-rooms-on-invite: "true"
+  hubot-hipchat-rooms: "All"
+  hubot-hipchat-xmpp-domain: "conf.btf.hipchat.com"
+  hubot-hipchat-password: ""
+  hubot-hipchat-jid: ""
+  hubot-hipchat-host: ""
+  hubot-slack-token: ""

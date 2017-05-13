@@ -1,0 +1,135 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=george-hipchat&var-version=1.0.0
+    fabric8.io/scm-con-url: scm:git:git@github.com:uberops/george-hipchat.git
+    fabric8.io/scm-url: https://github.com/uberops/george-hipchat
+    fabric8.io/iconUrl: https://github.com/uberops/george-hipchat/raw/master/logo.png
+    fabric8.io/git-branch: release-v1.0.0
+    fabric8.io/scm-devcon-url: scm:git:git@github.com:uberops/george-hipchat.git/george-hipchat
+    fabric8.io/scm-tag: ubermonitoring-secops-1.0.0
+  labels:
+    name: george-hipchat
+    provider: ubermonitoring
+    project: george-hipchat
+    version: 1.0.0  
+    group: io.ubermonitoring.secops.apps
+  name: george-hipchat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: george-hipchat
+      project: george-hipchat
+      provider: ubermonitoring
+      version: 1.0.0
+      group: io.ubermonitoring.secops.apps
+  template:
+    metadata:
+      annotations:
+        fabric8.io/git-commit: f7967da2069f486a3e6dbef233574eccac3e0dae
+        fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=george-hipchat&var-version=1.0.0
+        fabric8.io/scm-con-url: scm:git:git@github.com:uberops/george-hipchat.git/george-hipchat
+        fabric8.io/scm-url: http://github.com/uberops/george-hipchat/george-hipchat
+        fabric8.io/iconUrl: https://cdn.rawgit.com/uberops/george-hipchat/master/george-hipchat/src/main/fabric8/icon.png
+        fabric8.io/git-branch: release-v1.0.0
+        fabric8.io/scm-devcon-url: scm:git:git@github.com:uberops/george-hipchat.git/george-hipchat
+        fabric8.io/scm-tag: george-hipchat-1.0.0
+      labels:
+        name: george-hipchat
+        provider: ubermonitoring
+        project: george-hipchat
+        version: 1.0.0
+        group: io.ubermonitoring.secops.apps
+      name: george-hipchat
+    spec:
+      containers:
+      - env:
+        - name: HUBOT_GRAFANA_API_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-grafana-api-key
+              name: george-hipchat
+        - name: HUBOT_SLACK_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: george-hipchat-token
+              name: george-hipchat
+        - name: HUBOT_GRAFANA_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-grafana-host
+              name: george-hipchat
+        - name: HUBOT_JENKINS_URL
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-jenkins-url
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipcaht-host
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_JID
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-jid
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-password
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_XMPP_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-xmpp-domain
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_ROOMS
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-rooms
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_JOIN_ROOMS_ON_INVITE
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-join-rooms-on-invite
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_JOIN_PUBLIC_ROOMS
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipcaht-join-public-room
+              name: george-hipchat
+        - name: HUBOT_LOG_LEVEL
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-log-level
+              name: george-hipchat
+        - name: HUBOT_HIPCHAT_RECONNECT
+          valueFrom:
+            configMapKeyRef:
+              key: hubot-hipchat-reconnect
+              name: george-hipchat
+        image: docker.ubermonitoring.com/pjmorr/george-hipchat:1.0.0
+        name: george-hipchat
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+
+  hubot-jenkins-url: http://jenkins/
+  hubot-grafana-host: http://grafana/
+  hubot-hipchat-auth-token: ""
+  hubot-grafana-api-key: ""
+  hubot-hipchat-reconnect: "true"
+  hubot-log-level: "debug"
+  hubot-hipchat-join-public-rooms: "true"
+  hubot-hipchat-join-rooms-on-invite: "true"
+  hubot-hipchat-rooms: "All"
+  hubot-hipchat-xmpp-domain: "conf.btf.hipchat.com"
+  hubot-hipchat-password: ""
+  hubot-hipchat-jid: ""
+  hubot-hipchat-host: ""
+  hubot-slack-token: ""
